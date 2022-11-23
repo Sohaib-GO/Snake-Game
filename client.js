@@ -21,13 +21,16 @@ const connect = function () {
     conn.write("Name: SOH");
   });
 
-  
-  
-
+  // move the snake up
+  conn.on("connect", () => {
+    // set interval to move the snake up every 50ms
+    setInterval(() => {
+      conn.write("Move: up");
+    }, 50);
+    // console.log("Snake is moving up"); // Message to confirm snake is moving up
+  });
 
   return conn;
 };
-
-
 
 module.exports = { connect };
