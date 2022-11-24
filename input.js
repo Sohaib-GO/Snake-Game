@@ -18,7 +18,7 @@ const handleUserInput = (key) => {
   }
 
   if (key === "w") {
-    console.log("Snake is moving up");
+    connection.write("Move: up");
   }
 
   if (key === "a") {
@@ -31,6 +31,10 @@ const handleUserInput = (key) => {
 
   if (key === "d") {
     connection.write("Move: right");
+  }
+
+  if (key === "m") {
+    connection.write("Say: I'm the best!");
   }
 };
 
