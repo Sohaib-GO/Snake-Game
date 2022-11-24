@@ -1,5 +1,8 @@
+let connection;
+
 // setup interface to handle user input from stdin
-const setupInput = () => {
+const setupInput = (conn) => {
+  connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
@@ -9,12 +12,26 @@ const setupInput = () => {
   return stdin;
 };
 
-const handleUserInput = () => {
-  process.stdin.on("data", (key) => {
-    if (key === "\u0003") {
-      process.exit();
-    }
-  });
+const handleUserInput = (key) => {
+  if (key === "\u0003") {
+    process.exit();
+  }
+
+  if (key === "w") {
+    console.log("Snake is moving up");
+  }
+
+  if (key === "a") {
+    connection.write("Move: left");
+  }
+
+  if (key === "s") {
+    connection.write("Move: down");
+  }
+
+  if (key === "d") {
+    connection.write("Move: right");
+  }
 };
 
 module.exports = { setupInput };
